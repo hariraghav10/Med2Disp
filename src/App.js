@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
-
+//import MedicineForm from './comp/form.js'
+//import HomePage from './comp/homepage.js'
+import HomePage from './pages/HomePage.js'
+import AddPillPage from './pages/AddPillPage.js'
+import SettingsPage from './pages/SettingsPage.js'
+import Header from './comp/Header.js'
+import { Route, Router, Routes } from 'react-router-dom';
+import BottomNav from './comp/BottomNav.js';
+import { Button } from '@mui/material';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      marginBottom:"100px",
+    }}>
+     
+     <Routes>
+      <Route path='/' element={<HomePage/>}></Route>
+      <Route path='/add' element={<AddPillPage/>}></Route>
+      <Route path='/settings' element={<SettingsPage/>}></Route>
+     </Routes>
+     <BottomNav></BottomNav>
+
     </div>
   );
 }
