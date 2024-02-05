@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Accordion from '@mui/material/Accordion';
 import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -8,12 +8,19 @@ import {pilldata} from '../data/pillsdata.js'
 //import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PenIcon from '../Pen.png'
 import Button from '@mui/material/Button';
+
 export default function PillDetail(p) {
   const pill = p.data
-    const [IconShow, setIconShow] = useState(false)
-    function handlePencilClick(){
-        alert("clikced")
+  const [IconShow, setIconShow] = useState(false)
+  
+  const Navigate = useNavigate()
+  
+  function handlePencilClick(id){
+        //alert("clikced")
+        Navigate('/add?id='+id)
     }
+  
+  
     return(
 
         <div style={{padding:"0.5rem 0"}}>
@@ -39,7 +46,7 @@ export default function PillDetail(p) {
         </div>
           {
             IconShow &&  
-           <div style={{ border:"0px solid green", marginRight:"1rem", padding:'1rem'}} onClick={(e)=>handlePencilClick()}>
+           <div style={{ border:"0px solid green", marginRight:"1rem", padding:'1rem'}} onClick={(e)=>handlePencilClick(pill.compartment)}>
                 <img  style={{display:"block",border:"0px solid green", }} src={PenIcon} width="15px" height="15px"/>
           </div>
         

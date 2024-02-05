@@ -1,12 +1,22 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material"
 //import {makeStyles} from "@emotion/styles"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomeIcon from "../Home.png"
 import AddIcon from "../Add.png"
 import SettingsIcon from "../Settings.png"
-import { redirect, useNavigate } from "react-router-dom";
+import { redirect, useLocation, useNavigate } from "react-router-dom";
 export default function BottomNav() {
     const [value, setValue] = useState(0)
+    let page = useLocation()
+    page = page.pathname
+    console.log("page: ",page)
+
+    useEffect(()=>{
+      page == '/' && setValue(0)
+      page == '/add' && setValue(1)
+      page == '/settings' && setValue(2)
+      
+    })
 /*
     const useStyles = makeStyles({
         root: {
