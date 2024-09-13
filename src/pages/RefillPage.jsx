@@ -2,9 +2,12 @@ import React, { useEffect,useState } from 'react'
 import Header from "../comp/Header";
 import { pilldata } from '../data/pillsdata';
 import Button from "../comp/Button";
-function RefillPage() {
-  const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
 
+import config from '../appConfig.json'
+
+function RefillPage() {
+  //const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
+  const baseUrl = config.baseURL
 
   //states
   let [PillData, setPillData] = useState(null);

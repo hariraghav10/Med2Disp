@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import Header from "../comp/Header";
 import TimingsTab from "../comp/TimingsTab";
 import Button from "../comp/Button";
+
+import config from '../appConfig.json'
+
+
 export default function SettingsPage() {
 
-  const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
-
+  //const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
+  const baseUrl = config.baseURL
   const [inputValue, setInputValue] = useState("Steven Smith");
 
   let data = {
