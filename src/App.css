@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.form{
+.form {
   border: 1px solid green;
   padding: 3rem;
   margin: auto;
@@ -12,9 +12,9 @@
   font-size: 30px;
 }
 
-input{
+input {
   font-size: 20px;
-  margin-left: 20px ;
+  margin-left: 20px;
   padding: 0.3rem;
 }
 /*
@@ -37,13 +37,18 @@ button:hover{
   }
 }
 
-
-.settings-title{
+.settings-title {
   font-weight: 500;
-  color:#595959;
+  /* color:#595959; */
+  color: #7014f2;
   padding: 0 0 1rem 0;
-  
 }
-.settings-section{
+.settings-section {
   padding: 0 0 4rem 0;
+}
+
+.box-option {
+  background-color: white;
+  color: black;
+  font-size: 1.4rem;
 }

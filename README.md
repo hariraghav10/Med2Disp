@@ -8,4 +8,4 @@ The app's main features are to monitor the Pills in the dispenser and to configu
 
 ## Part of the system
 
-This project is just the software part of a bigger architecture which is selected for the Smart India Hackathon.
+This project is just the software part of a bigger architecture which is selected for the MSME.

@@ -1,0 +1,132 @@
+{
+  "pill-metadata": {
+    "totalBoxUsed": 3,
+    "totalBoxFree": 7,
+    "boxesinUse": [1, 2, 7],
+    "nextDefault": 3,
+    "scheduledTimes": [
+      {
+        "timeId": 1,
+        "label": "d-m",
+        "time": "9:30 AM"
+      },
+      {
+        "timeId": 2,
+        "label": "d-a",
+        "time": "12:30 PAM"
+      },
+      { "timeId": 3, "label": "d-e", "time": "5:30 PM" },
+      { "timeId": 4, "label": "d-n", "time": "8:30 pM" }
+    ]
+  },
+  "pill-data": [
+    {
+      "boxNumber": 1,
+      "name": "Dolo 650",
+      "totalPills": 14,
+      "intakeData": {
+        "withFood": 1,
+        "//comment": "timings need to be re considered again",
+        "timings": [
+          {
+            "timeId": 1,
+            "dosage": 1
+          },
+          {
+            "timeId": 2,
+            "dosage": 1
+          },
+          {
+            "timeId": 3,
+            "dosage": 1
+          },
+          {
+            "timeId": 4,
+            "dosage": 1
+          }
+        ]
+      },
+      "refillData": {
+        "isCurrRefill": 0,
+        "pillsToRefill": 0
+      }
+    },
+    {
+      "boxNumber": 2,
+      "name": "Benzonatate",
+      "totalPills": 4,
+      "intakeData": {
+        "withFood": 1,
+
+        "timings": [
+          {
+            "timeId": 1,
+            "dosage": 1
+          },
+
+          {
+            "timeId": 4,
+            "dosage": 1
+          }
+        ]
+      },
+      "refillData": {
+        "isCurrRefill": 0,
+        "pillsToRefill": 0
+      }
+    },
+    {
+      "boxNumber": 7,
+      "name": "Calpal",
+      "totalPills": 7,
+      "intakeData": {
+        "withFood": 1,
+
+        "timings": [
+          {
+            "timeId": 1,
+            "dosage": 1
+          },
+          {
+            "timeId": 2,
+            "dosage": 1
+          },
+
+          {
+            "timeId": 4,
+            "dosage": 1
+          }
+        ]
+      },
+      "refillData": {
+        "isCurrRefill": 0,
+        "pillsToRefill": 0
+      }
+    }
+  ],
+  "user-data": {
+    "userData": {
+      "userId": 2869922,
+      "userName": "Ram Kumar",
+      "email": "ramkumar@gmail.com",
+      "loginPin": 1234,
+      "isLogged": false
+    },
+    "doctorData": [
+      {
+        "userId": 2853922,
+        "userName": "Ram Kumar",
+        "email": "ramkumar@gmail.com",
+        "loginPin": 7790,
+        "isLogged": false
+      },
+      {
+        "userId": 9869922,
+        "userName": "Ram Kumar",
+        "email": "ramkumar@gmail.com",
+        "loginPin": 7754,
+        "isLogged": false
+      }
+    ]
+  }
+}
