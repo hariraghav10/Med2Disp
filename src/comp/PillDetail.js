@@ -9,20 +9,32 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import PenIcon from "../Pen.png";
 import Button from "@mui/material/Button";
 
+import languageContent from '../data/languageContents.json'
 export default function PillDetail(p) {
   const pill = p.data;
   const [IconShow, setIconShow] = useState(false);
 
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange');
+
+   
+    setLanguageChange(langChange);
+    langChange&&setScreenContent(languageContent[language]['contents']);
+  },[])
+
   const intakelabels ={
-    1:"Morning",
-    2:"Afternoon",
-    3:"Evening",
-    4:"Night",
+    1:(!languageChange?("Morning"):(screenContent['morning'])),
+    2:(!languageChange?("Afternoon"):(screenContent['afternoon'])),
+    3:(!languageChange?("Evening"):(screenContent['evening'])),
+    4:(!languageChange?("Night"):(screenContent['night'])),
     5:"Custom"
   }
   const foodlabels ={
-    0:"Before",
-    1:"After"
+    0:(!languageChange?("Before Food"):(screenContent['BeforeFood'])),
+    1:(!languageChange?("After Food"):(screenContent['AfterFood'])),
   }
   const Navigate = useNavigate();
 
@@ -134,7 +146,7 @@ export default function PillDetail(p) {
                 </div>
               ))}
             </div>
-            <p style={{ border: "0px solid pink" }}>{foodlabels[pill.intakeData.withFood] + " Food"}</p>
+            <p style={{ border: "0px solid pink" }}>{foodlabels[pill.intakeData.withFood] }</p>
           </div>
         </AccordionDetails>
       </Accordion>

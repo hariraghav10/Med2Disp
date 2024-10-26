@@ -4,6 +4,7 @@ import { pilldata } from '../data/pillsdata';
 import Button from "../comp/Button";
 
 import config from '../appConfig.json'
+import languageContent from '../data/languageContents.json'
 
 function RefillPage() {
   //const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
@@ -96,10 +97,25 @@ function HandleFun(e) {
 
     })
   }
+
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange')==="true";
+
+   
+    setLanguageChange(langChange);
+    if (langChange){
+      setScreenContent(languageContent[language]['contents']);
+    }
+  
+  },[])
+
   //retuning
   return (
     <>
-       <Header title="Refill"></Header>
+       <Header title={(!languageChange?("Refill"):(screenContent['Refill']))}></Header>
        <div style={{ padding: "2rem 0rem 2rem 2rem" }}>
        <div>
       {(refill) ? (
@@ -158,7 +174,7 @@ function HandleFun(e) {
     </div>
     <div>
         {/* <Button onClick={checkState}>Check State</Button> */}
-        <Button theme={"success"} onClick={SubmitData} dis={!changes}>Refill Pills</Button>
+        <Button theme={"success"} onClick={SubmitData} dis={!changes}>{(!languageChange?("Refill Pills"):(screenContent['RefillPills']))}</Button>
       </div>
       </div>
       

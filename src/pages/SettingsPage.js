@@ -5,6 +5,7 @@ import TimingsTab from "../comp/TimingsTab";
 import Button from "../comp/Button";
 
 import config from '../appConfig.json'
+import languageContent from '../data/languageContents.json'
 
 
 export default function SettingsPage() {
@@ -12,6 +13,7 @@ export default function SettingsPage() {
   //const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
   const baseUrl = config.baseURL
   const [inputValue, setInputValue] = useState("Steven Smith");
+
 
   let data = {
     userdata: {
@@ -106,20 +108,45 @@ export default function SettingsPage() {
 
 })
   }
+
+  
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange')==="true";
+
+   
+    setLanguageChange(langChange);
+    langChange&&setScreenContent(languageContent[language]['contents']);
+    console.log('Language Change: ',langChange)
+    console.log("Language Change State Variable: ", languageChange)
+  },[])
+
+
+  const intakelabels ={
+    1:(!languageChange?("Morning"):(screenContent['morning'])),
+    2:(!languageChange?("Afternoon"):(screenContent['afternoon'])),
+    3:(!languageChange?("Evening"):(screenContent['evening'])),
+    4:(!languageChange?("Night"):(screenContent['night'])),
+    5:"Custom"
+  }
+  let title=((!languageChange)?("Configure App Settings"):(screenContent['ConfigureAppSettings']))
+  console.log(title)
   return (
     <>
     {
     (timeData && (<>
-      <Header title="Configure the App settings"></Header>
+      <Header title={title}></Header>
       <main style={{ padding: "2rem 0 2rem 2rem" }}>
         <section className="settings-section">
-          <p className="settings-title">User Detail</p>
+          <p className="settings-title">{(!languageChange?("User Detail"):(screenContent['UserDetail']))}</p>
           <label
             style={{
               fontSize: "1.5rem",
             }}
           >
-            Name:
+            {(!languageChange?("Name"):(screenContent['name'])) + " :"}
           </label>
           <input
             type="text"
@@ -138,41 +165,43 @@ export default function SettingsPage() {
         </section>
 
         <section className="settings-section">
-          <p className="settings-title">Configure Timings</p>
+          <p className="settings-title"> {(!languageChange?("Configure Timings"):(screenContent['ConfigureTimings']))}</p>
 
           {timeData[0] && <TimingsTab
-            label={"Morning"}
+            label={intakelabels[1]}
             name={0}
             time={timeData?timeData[0].time:'09:10'}
             handleChange={HandleTimeChange}
           ></TimingsTab> }
           <TimingsTab
-            label={"Afternoon"}
+            label={intakelabels[2]}
             name={1}
             time={timeData[1].time}
             handleChange={HandleTimeChange}
           ></TimingsTab>
           <TimingsTab
-            label={"Evening"}
+            label={intakelabels[3]}
             name={2}
             time={timeData[2].time}
             handleChange={HandleTimeChange}
           ></TimingsTab>
           <TimingsTab
-            label={"Night"}
+            label={intakelabels[4]}
             name={3}
             time={timeData[3].time}
             handleChange={HandleTimeChange}
           ></TimingsTab>
            <Button theme={"success"} onClick={SubmitData} dis={!changes}>
-            Save Changes
+           {(!languageChange?("Save Changes"):(screenContent['SaveChanges']))}
           </Button>
         </section>
 
         <section className="settings-section">
-          <p className="settings-title">Other Options</p>
-          <Button>Refill All &rarr;</Button>
-          <Button>View Alerts &rarr;</Button>
+          <p className="settings-title">
+          {(!languageChange?("Other Options"):(screenContent['OtherOptions']))}
+          </p>
+          <Button> {(!languageChange?("Refill All"):(screenContent['RefillAll']))} &rarr;</Button>
+          <Button> {(!languageChange?("View Alert"):(screenContent['ViewAlert']))} &rarr;</Button>
          
         </section>
         {/* <div style={{
@@ -186,7 +215,103 @@ export default function SettingsPage() {
         {/* </div> */}
       </main>
 
+      <div>
+
+     <LanguageDropdown></LanguageDropdown>
+     {/* <div>
+        <button onClick={()=>{console.log(languageChange)}}>Show Language Change</button>
+      </div> */}
+
+      </div>
     </>))}
         </>
   );
+}
+
+const LanguageDropdown = () => {
+
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange')==="true";
+
+   
+    setLanguageChange(langChange);
+    if (langChange){
+      setScreenContent(languageContent[language]['contents']);
+    }
+  
+  },[])
+  
+  const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownStyle = {
+      position: 'relative',
+      display: 'inline-block',
+      textAlign: 'center',
+      margin:"auto auto 200px 40vw"
+  };
+
+  const buttonStyle = {
+      cursor: 'pointer',
+      padding: '8px 12px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      backgroundColor: '#fff',
+      width: '150px',
+  };
+
+  const dropdownContentStyle = {
+      position: 'absolute',
+      top: '100%',
+      left: '0',
+      zIndex: '10',
+      width: '150px',
+      border: '1px solid #ccc',
+      borderRadius: '4px',
+      display: isOpen ? 'block' : 'none',
+      backgroundColor: '#fff',
+  };
+
+  const itemStyle = {
+      padding: '8px 12px',
+      cursor: 'pointer',
+      textAlign: 'left',
+      width: '100%',
+  };
+
+  return (
+      <div style={dropdownStyle}>
+          <div
+              onClick={() => setIsOpen(!isOpen)}
+              style={buttonStyle}
+          >
+              {(!languageChange?("English"):(screenContent['language']))}  →
+          </div>
+          <div style={dropdownContentStyle}>
+              <div onClick={() => setLanguage('en')} style={itemStyle}>English</div>
+              <div onClick={() => setLanguage('ta')} style={itemStyle}>தமிழ்</div>
+              <div onClick={() => setLanguage('te')} style={itemStyle}>తెలుగు</div>
+              <div onClick={() => setLanguage('ml')} style={itemStyle}>മലയാളം</div>
+          </div>
+      
+     
+
+      </div>
+      
+  );
+};
+
+
+function setLanguage(lang) {
+  if(lang != "en"){
+    localStorage.setItem('Lang', lang);
+    localStorage.setItem('LangChange', true);
+  }
+  else{
+    localStorage.setItem('Lang', lang);
+    localStorage.setItem('LangChange', false);
+  }
+  
 }

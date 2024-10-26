@@ -1,0 +1,115 @@
+{
+    "ta":{
+        "contents":
+        {
+                "language": "தமிழ்",
+                "homeTitle":"பெட்டியில் உள்ள மாத்திரைகள்",
+                "morning": "காலை",
+                "afternoon": "மதியம்",
+                "evening": "மாலை",
+                "night": "இரவு",
+                "pill": "மாத்திரை",
+                "BeforeFood": "உணவுக்கு முன்னால்",
+                "AfterFood": "உணவுக்குப் பிறகு",
+                "AddPillTitle":"உங்கள் மாத்திரை விவரங்களைச் சேர்",
+                "box":"பெட்டி",
+                "name":"பெயர்",
+                "TimingsAndDosage": "நேரங்கள் மற்றும் மருந்தளவு",
+                "PillIntake":"மாத்திரை உட்கொள்ளல்",
+                "SaveChanges":"மாற்றங்களை சேமிக்க",
+                "Delete": "மாத்திரையை நீக்கு",
+                "ConfigureAppSettings": "ஆப் அமைப்புகளை ஒழுங்கமைக்கவும்",
+                "UserDetail": "பயனர் விவரம்",
+                "ConfigureTimings": "நேரங்களை கட்டமைக்கவும்",
+                "RefillAll": "அனைத்தையும் நிரப்பவும்",
+                "ViewAlert": "அறிவிப்பைப் பார்",
+                "OtherOptions": "மற்ற விருப்பங்கள்",
+                "Refill": "மறுபூர்த்தி",
+                "RefillPills": "மாத்திரைகளை மறுபூர்த்தி செய்க"
+
+                        
+        }
+    },
+    "te":{
+        "contents":
+        {
+            
+                 "language": "తెలుగు",
+                "homeTitle": "బాక్స్‌లో ఉన్న టాబ్లెట్లు",
+                "morning": "ఉదయం",
+                "afternoon": "మధ్యాహ్నం",
+                "evening": "సాయంత్రం",
+                "night": "రాత్రి",
+                "pill": "గുളిక",
+                "BeforeFood": "భోజనం ముందు",
+                "AfterFood": "భోజనం తర్వాత",
+                "AddPillTitle": "మీ మాత్ర వివరాలను జోడించండి",
+                "box": "పెట్టె",
+                "name": "పేరు",
+                "TimingsAndDosage": "సమయాలు మరియు మోతాదు",
+                "PillIntake": "మాత్ర సేకరణ",
+                "SaveChanges": "మార్పులను సేవ్ చేయండి",
+                "Delete":"మాత్రను తీసివేయండి",
+                "ConfigureAppSettings": "అనువర్తన సెట్టింగ్లను అమర్చండి",
+                "UserDetail": "వాడుకరి వివరాలు",
+                "ConfigureTimings": "సమయాలను కూర్పు చేయండి",
+                "RefillAll": "అన్ని తిరిగి నింపండి",
+                "ViewAlert": "అలర్ట్ చూడండి",
+                "OtherOptions": "ఇతర ఎంపికలు",
+                "Refill": "తిరిగి నింపండి",
+                "RefillPills": "మాత్రలను తిరిగి నింపండి"
+                        
+        }
+    },
+    "ml":{
+        "contents":
+        {
+        
+                "language": "മലയാളം",
+                "homeTitle": "ബോക്സിലെ ഗുളികകൾ",
+                "morning": "രാവിലെ",
+                "afternoon": "ഉച്ചയ്ക്ക്",
+                "evening": "വൈകുന്നേരം",
+                "night": "രാത്രി",
+                "pill": "ഗുളിക",
+                "BeforeFood": "ഭക്ഷണത്തിന് മുമ്പ്",
+                "AfterFood": "ഭക്ഷണത്തിന് ശേഷം",
+                "AddPillTitle": "നിങ്ങളുടെ ഗുളിക വിവരങ്ങൾ ചേർക്കുക",
+                "box": "ബോക്സ്",
+                "name": "പേര്",
+                "TimingsAndDosage": "സമയംകളും ഡോസ്",
+                "PillIntake": "ഗുളികയിൽ അകത്തെടുപ്പ്",
+                "SaveChanges": "മാറ്റങ്ങൾ സേവ് ചെയ്യുക",
+                "Delete": "ഗുളിക നീക്കം ചെയ്യുക",
+                "ConfigureAppSettings": "ആപ്പ് ക്രമീകരണങ്ങൾ ക്രമീകരിക്കുക",
+                "UserDetail": "ഉപയോക്താവിന്റെ വിശദാംശങ്ങൾ",
+                "ConfigureTimings": "സമയങ്ങൾ ക്രമീകരിക്കുക",
+                "RefillAll": "എല്ലാം വീണ്ടും നിറക്കുക",
+                "ViewAlert": "അലർട്ട് കാണുക",
+                "OtherOptions": "മറ്റു ഓപ്ഷനുകൾ",
+                "Refill": "വീണ്ടും നിറക്കുക",
+                "RefillPills": "ഗുളികകൾ വീണ്ടും നിറക്കുക"
+                
+                        
+        }
+    },
+    "en": {
+    "contents": {
+        "homeTitle": "Pills in the Box",
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "night": "Night",
+        "pill": "Pill",
+        "BeforeFood": "Before Food",
+        "AfterFood": "After Food",
+        "AddPillTitle":"Add your Pill Details",
+        "box":"Box",
+        "name":"Name",
+        "PillIntake":"Pill Intake",
+        "SaveChanges":"Save Changes",
+        "Delete":"Delete"
+    }
+}
+
+}

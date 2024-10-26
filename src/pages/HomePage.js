@@ -10,7 +10,7 @@ import { Network } from '@capacitor/network';
 //const { Network } = Plugins;
 
 import config from '../appConfig.json'
-
+import languageContent from '../data/languageContents.json'
 
 export default function HomePage() {
  
@@ -72,9 +72,23 @@ export default function HomePage() {
      console.log(error);
     }
   }
+
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange')==="true";
+
+   
+    setLanguageChange(langChange);
+    if (langChange){
+      setScreenContent(languageContent[language]['contents']);
+    }
+  
+  },[])
   return (
     <>
-      <Header title="Pills in the Dispenser"></Header>
+      <Header title={!languageChange?("Pills in the Dispenser"):(screenContent['homeTitle'])}></Header>
       <div style={{ width: "90%", margin: "auto" }}>
         <PillsList data={PillData}></PillsList>
       </div>

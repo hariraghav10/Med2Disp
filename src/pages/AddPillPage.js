@@ -9,15 +9,31 @@ import CompartmentBox from "../comp/CompartmentBox";
 
 import config from '../appConfig.json'
 
+import languageContent from '../data/languageContents.json'
+
 export default function AddPillPage() {
 
   //const baseUrl = window.location.protocol + "//" + window.location.hostname + ":" + "3030";
   const baseUrl = config.baseURL
+
+  
+  let [languageChange, setLanguageChange] = useState(false) 
+  let [screenContent, setScreenContent] = useState({})
+  useEffect(()=>{
+    const language = localStorage.getItem('Lang');
+    const langChange = localStorage.getItem('LangChange')==="true";
+
+   
+    setLanguageChange(langChange);
+    langChange&&setScreenContent(languageContent[language]['contents']);
+  },[])
+
+
   const intakelabels ={
-    1:"Morning",
-    2:"Afternoon",
-    3:"Evening",
-    4:"Night",
+    1:(!languageChange?("Morning"):(screenContent['morning'])),
+    2:(!languageChange?("Afternoon"):(screenContent['afternoon'])),
+    3:(!languageChange?("Evening"):(screenContent['evening'])),
+    4:(!languageChange?("Night"):(screenContent['night'])),
     5:"Custom"
   }
   
@@ -225,7 +241,7 @@ function get_index(timeID){
 
     //Event Hannler for the Dosage Labels
 
-    if (["Morning", "Afternoon", "Evening", "Night"].includes(el.name)) {
+    if ([(!languageChange?("Morning"):(screenContent['morning'])), (!languageChange?("Afternoon"):(screenContent['afternoon'])), (!languageChange?("Evening"):(screenContent['evening'])), (!languageChange?("Night"):(screenContent['night']))].includes(el.name)) {
       
       console.log(el.name)
       console.log(el.value)
@@ -421,7 +437,7 @@ const [changes, setChanges] = useState(false)
   return (
 ( PillData && 
     <>
-      <Header title={"Add your Pill Details"}></Header>
+      <Header title={(!languageChange?("Add your Pill Details"):(screenContent['AddPillTitle']))}></Header>
 
 
       <CompartmentBox
@@ -438,7 +454,7 @@ const [changes, setChanges] = useState(false)
             fontSize: "1.5rem",
           }}
         >
-          Name:
+          {(!languageChange?("Name"):(screenContent['name']))}
         </label>
         <input
           type="text"
@@ -475,7 +491,7 @@ const [changes, setChanges] = useState(false)
               width: "60%",
             }}
           >
-            <p>Timings and Dosage</p>
+            <p>{(!languageChange?("Timings And Dosage"):(screenContent['TimingsAndDosage']))}</p>
             {/* {["Morning", "Afternoon", "Evening", "Night"].map((t1) =>
               isSelectedList(t1),
             )} */}
@@ -485,25 +501,25 @@ const [changes, setChanges] = useState(false)
             check_time(1)?PillData.intakeData.timings[get_index(1)]:{"timeID":1,"dosage":0}
             }
           selected={ check_time(1)}
-          name={"Morning"}
+          name={intakelabels[1]}
           handle={HandlePillChanges}
         ></PillintakeTab>
          <PillintakeTab
           data={check_time(2)?PillData.intakeData.timings[get_index(2)]:{"timeID":2,"dosage":0}}
           selected={check_time(2)}
-          name={"Afternoon"}
+          name={intakelabels[2]}
           handle={HandlePillChanges}
         ></PillintakeTab>
          <PillintakeTab
           data={check_time(3)?PillData.intakeData.timings[get_index(3)]:{"timeID":3,"dosage":0}}
           selected={check_time(3)}
-          name={"Evening"}
+          name={intakelabels[3]}
           handle={HandlePillChanges}
         ></PillintakeTab>
          <PillintakeTab
           data={check_time(4)?PillData.intakeData.timings[get_index(4)]:{"timeID":4,"dosage":0}}
           selected={check_time(4)}
-          name={"Night"}
+          name={intakelabels[4]}
           handle={HandlePillChanges}
         ></PillintakeTab>
           </section>
@@ -514,7 +530,7 @@ const [changes, setChanges] = useState(false)
               border: "0px solid red",
             }}
           >
-            <p>Pill Intake</p>
+            <p>{(!languageChange?("Pill Intake"):(screenContent['PillIntake']))}</p>
             <label>
               <input
                 type="radio"
@@ -523,7 +539,7 @@ const [changes, setChanges] = useState(false)
                 checked={ PillData.intakeData.withFood==0}
                 onChange={(e) => HandlePillChanges(e)}
               />
-              Before
+              {(!languageChange?("Before Food"):(screenContent['BeforeFood']))}
             </label>
             <br></br>
             <label>
@@ -534,7 +550,7 @@ const [changes, setChanges] = useState(false)
                 checked={PillData.intakeData.withFood==1}
                 onChange={(e) => HandlePillChanges(e)}
               />
-              After
+              {(!languageChange?("After Food"):(screenContent['AfterFood']))}
             </label>
           </section>
         </div>
@@ -543,10 +559,10 @@ const [changes, setChanges] = useState(false)
         }}></button> */}
         {/* <Button>Refill &rarr;</Button> */}
         <Button theme={"success"} onClick={SubmitData} dis={!changes} >
-          Save Changes
+        {(!languageChange?("Save Changes"):(screenContent['SaveChanges']))}
         </Button>
         <Button theme={"delete"} onClick={deleteData}  >
-          Delete Pill
+        {(!languageChange?("Delete Pill"):(screenContent['Delete']))}
         </Button>
       </main>
     </>
