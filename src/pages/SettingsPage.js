@@ -6,6 +6,7 @@ import Button from "../comp/Button";
 
 import config from '../appConfig.json'
 import languageContent from '../data/languageContents.json'
+import LogoutButton from "../comp/logoutButton";
 
 
 export default function SettingsPage() {
@@ -42,7 +43,10 @@ export default function SettingsPage() {
 
   async function fetchTimes(){
    
-    let data = await fetch(`${baseUrl}/times`)
+    let data = await fetch(`${baseUrl}/times`, {
+      method: 'GET', // Explicitly specifying the method
+      credentials: 'include', // Ensures cookies are sent with the request
+  });
     if (!data.ok) {
       console.log("Network response was not ok");
     }
@@ -98,6 +102,7 @@ export default function SettingsPage() {
     headers: {
       'Content-Type': 'application/json' // Specify the content type as JSON
     },
+    credentials: 'include',
     body: JSON.stringify(timeData) // Convert data object to JSON string
   
 }).then(async (d)=>{
@@ -216,8 +221,13 @@ export default function SettingsPage() {
       </main>
 
       <div>
-
+          
+     
+     
      <LanguageDropdown></LanguageDropdown>
+     <br></br>
+     <LogoutButton content= {(!languageChange?("Logout"):(screenContent['Logout']))}></LogoutButton>
+
      {/* <div>
         <button onClick={()=>{console.log(languageChange)}}>Show Language Change</button>
       </div> */}
@@ -245,41 +255,47 @@ const LanguageDropdown = () => {
   },[])
   
   const [isOpen, setIsOpen] = useState(false);
-
   const dropdownStyle = {
-      position: 'relative',
-      display: 'inline-block',
-      textAlign: 'center',
-      margin:"auto auto 200px 40vw"
-  };
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center', // Center items horizontally
+    justifyContent: 'center', // Center items vertically
+    //height: '100vh', // Full height of the viewport
+   // width: '100%', // Full width
+    position: 'relative', // Required for absolute positioning of dropdown content
+};
 
-  const buttonStyle = {
-      cursor: 'pointer',
-      padding: '8px 12px',
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      backgroundColor: '#fff',
-      width: '150px',
-  };
+const buttonStyle = {
+    padding: '10px 20px',
+    fontSize: '16px',
+    color: '#fff',
+    backgroundColor: '#007bff', // Example color
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    outline: 'none',
+    marginBottom: '10px', // Add margin below the button for spacing
+};
 
-  const dropdownContentStyle = {
-      position: 'absolute',
-      top: '100%',
-      left: '0',
-      zIndex: '10',
-      width: '150px',
-      border: '1px solid #ccc',
-      borderRadius: '4px',
-      display: isOpen ? 'block' : 'none',
-      backgroundColor: '#fff',
-  };
+const dropdownContentStyle = {
+    display: isOpen ? 'block' : 'none', // Toggle visibility based on state
+    position: 'absolute', // Position dropdown absolutely relative to the button
+    top: '60px', // Adjust this value to position dropdown below the button
+    left: '50%', // Center the dropdown horizontally
+    transform: 'translateX(-50%)', // Center it correctly
+    border: '1px solid #ccc', // Optional styling
+    backgroundColor: '#fff', // Dropdown background color
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)', // Optional shadow for dropdown
+    zIndex: 1, // Ensure dropdown is on top
+};
 
-  const itemStyle = {
-      padding: '8px 12px',
-      cursor: 'pointer',
-      textAlign: 'left',
-      width: '100%',
-  };
+const itemStyle = {
+    padding: '10px 20px',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#f0f0f0', // Add hover effect
+    },
+};
 
   return (
       <div style={dropdownStyle}>
@@ -295,9 +311,6 @@ const LanguageDropdown = () => {
               <div onClick={() => setLanguage('te')} style={itemStyle}>తెలుగు</div>
               <div onClick={() => setLanguage('ml')} style={itemStyle}>മലയാളം</div>
           </div>
-      
-     
-
       </div>
       
   );
@@ -313,5 +326,5 @@ function setLanguage(lang) {
     localStorage.setItem('Lang', lang);
     localStorage.setItem('LangChange', false);
   }
-  
+  window.location.href = '/settings';
 }

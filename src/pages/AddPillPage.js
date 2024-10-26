@@ -98,7 +98,10 @@ export default function AddPillPage() {
 
   async function setOldPill(id){
     
-    let pill = await fetch(`${baseUrl}/pills/${id}`)
+    let pill = await fetch(`${baseUrl}/pills/${id}`, {
+      method: 'GET', // Explicitly specifying the method
+      credentials: 'include', // Ensures cookies are sent with the request
+  });
     let pilljson = await pill.json()
     if (pilljson) {
       setPillData(pilljson);
@@ -109,13 +112,19 @@ export default function AddPillPage() {
       setisNewPill(true);
       console.log("New Pill");
     }
-    let freeslots = await fetch(`${baseUrl}/free-slots`)
+    let freeslots = await fetch(`${baseUrl}/free-slots`, {
+      method: 'GET', // Explicitly specifying the method
+      credentials: 'include', // Ensures cookies are sent with the request
+  });
     let slots = await freeslots.json()
     setFreeSlot(slots.data)
    
   }
   async function getFreeSlots(){
-    let freeslots = await fetch(`${baseUrl}/free-slots`)
+    let freeslots = await fetch(`${baseUrl}/free-slots`, {
+      method: 'GET', // Explicitly specifying the method
+      credentials: 'include', // Ensures cookies are sent with the request
+  });
     let slots = await freeslots.json()
     setFreeSlot(slots.data)
     return slots
@@ -383,6 +392,7 @@ const [changes, setChanges] = useState(false)
         headers: {
           'Content-Type': 'application/json' // Specify the content type as JSON
         },
+        credentials:"include",
         body: JSON.stringify(PillData) // Convert data object to JSON string
       
     }).then(async (d)=>{
@@ -400,6 +410,7 @@ const [changes, setChanges] = useState(false)
         headers: {
           'Content-Type': 'application/json' // Specify the content type as JSON
         },
+        credentials: 'include',
         body: JSON.stringify(PillData) // Convert data object to JSON string
       
     }).then(async (d)=>{
@@ -420,6 +431,7 @@ const [changes, setChanges] = useState(false)
     fetch(`${baseUrl}/pills/${PillData.boxNumber}`, {
       
         method: 'DELETE', // HTTP method
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json' // Specify the content type as JSON
         } // Convert data object to JSON string

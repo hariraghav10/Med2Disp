@@ -12,6 +12,9 @@ import { Button } from "@mui/material";
 import PageA from "./pages/PageA.jsx";
 import PageB from "./pages/PageB.jsx";
 import RefillPage from "./pages/RefillPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import PrivateRoute from "./comp/privateRoute.jsx";
+import LogoutPage from "./pages/LogoutPage.jsx";
 function App() {
   return (
     <div
@@ -20,12 +23,14 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/add" element={<AddPillPage />}></Route>
-        <Route path="/settings" element={<SettingsPage />}></Route>
+        <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>}></Route>
+        <Route path="/add" element={<PrivateRoute><AddPillPage /></PrivateRoute>}></Route>
+        <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>}></Route>
         <Route path="/pagea" element={<PageA />}></Route>
         <Route path="/pageb" element={<PageB />}></Route>
-        <Route path="/refill" element={<RefillPage />}></Route>
+        <Route path="/refill" element={<PrivateRoute><RefillPage /></PrivateRoute>}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/logout" element={<LogoutPage />}></Route>
       </Routes>
       <BottomNav></BottomNav>
     </div>

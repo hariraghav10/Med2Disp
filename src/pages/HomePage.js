@@ -56,7 +56,10 @@ export default function HomePage() {
   async function getAllPills(){
     try{
       //alert(baseUrl)
-      let pills = await fetch(`${baseUrl}/pills`)
+      let pills = await fetch(`${baseUrl}/pills`, {
+        method: 'GET', // Explicitly specifying the method
+        credentials: 'include', // Ensures cookies are sent with the request
+    });
       if (!pills.ok) {
         alert("Network response was not ok");
       }

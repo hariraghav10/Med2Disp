@@ -24,7 +24,10 @@ function RefillPage() {
 
   //functions
   async function getAllPills(){
-    let pills = await fetch(`${baseUrl}/pills`)
+    let pills = await fetch(`${baseUrl}/pills`, {
+      method: 'GET', // Explicitly specifying the method
+      credentials: 'include', // Ensures cookies are sent with the request
+  });
     let pillsjson = await pills.json()
     let refillary={}
     pillsjson.forEach(p => {
@@ -87,6 +90,7 @@ function HandleFun(e) {
         headers: {
           'Content-Type': 'application/json' // Specify the content type as JSON
         },
+        credentials: 'include',
         body: JSON.stringify(refill) // Convert data object to JSON string
       
     }).then(async (d)=>{
