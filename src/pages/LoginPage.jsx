@@ -1,5 +1,5 @@
 import React, { useState,useEffect} from "react";
-
+import { useNavigate } from "react-router-dom";
 import config from '../appConfig.json'
 import languageContent from '../data/languageContents.json'
 
@@ -10,34 +10,40 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", { email, password });
-    // Here, you could add authentication logic or API calls
-    setError("");
-
+    setError(""); // Clear any previous errors
+    setLoading(true); // Set loading state while waiting for response
+  
     try {
-      const response = await fetch(baseUrl+"/auth/login", {
+      const response = await fetch(`${baseUrl}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-        credentials: 'include' // Include cookies in requests
+        credentials: "include", // Include cookies for session handling
       });
-
+  
       if (!response.ok) {
-        throw new Error("Failed to log in");
+        const errorData = await response.json(); // Capture error details if provided
+        throw new Error(errorData.message || "Failed to log in");
       }
-
+  
       const data = await response.json();
       console.log("Login successful:", data);
-      // Handle successful login, e.g., redirect user, save token, etc.
-      window.location.href = '/';
+  
+      // Set user state, token, or any other necessary state here
+      // For example: setUser(data.user) or setToken(data.token)
+  
+      navigate("/"); // Redirect only after successful state update
     } catch (error) {
-      console.error("Error:", error);
-      setError("Login failed. Please check your credentials.");
+      console.error("Login error:", error);
+      setError(error.message || "Login failed. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading state
     }
   };
 

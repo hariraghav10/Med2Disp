@@ -1,4 +1,4 @@
 {
-    "baseURL":"https://med2disp-backend.onrender.com",
-    "baseURL notinuse":"http://localhost:3030"
+    "baseURL notinuse":"https://med2disp-backend.onrender.com",
+    "baseURL":"http://localhost:3030"
 }
