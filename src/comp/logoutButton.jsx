@@ -6,7 +6,7 @@ const baseUrl = config.baseURL
 const LogoutButton = (p) => {
     const handleLogout = async () => {
         try {
-            const response = await fetch(baseUrl+'auth/logout', {
+            const response = await fetch(baseUrl+'/auth/logout', {
                 method: 'POST',
                 credentials: 'include', // Send cookies for session
             });
