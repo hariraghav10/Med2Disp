@@ -1,9 +1,12 @@
 import React from 'react';
+import config from '../appConfig.json'
+
+const baseUrl = config.baseURL
 
 const LogoutButton = (p) => {
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://localhost:3030/auth/logout', {
+            const response = await fetch(baseUrl+'auth/logout', {
                 method: 'POST',
                 credentials: 'include', // Send cookies for session
             });
